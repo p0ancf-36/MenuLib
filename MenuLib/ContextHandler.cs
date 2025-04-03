@@ -55,4 +55,38 @@ public class ContextHandler : IContextHandler
     {
         return Console.ReadKey().Key;
     }
+    
+    public double ReadDouble(
+        double min = double.NegativeInfinity,
+        double max = double.PositiveInfinity,
+        string label = "enter double value: ",
+        string invalidInput = "you introduced not double value!\n",
+        string overflowInput = "double that you introduced is not in bounds\n")
+    {
+        double result;
+        bool isSuccess;
+
+        Begin();
+
+        do
+        {
+            Write(label);
+            isSuccess = double.TryParse(Console.ReadLine(), out result);
+
+            Clear();
+            if (!isSuccess)
+            {
+                Write(invalidInput);
+            }
+            else if (result < min || result > max)
+            {
+                isSuccess = false;
+                Write(overflowInput);
+            }
+        } while (!isSuccess);
+
+        End();
+
+        return result;
+    }
 }

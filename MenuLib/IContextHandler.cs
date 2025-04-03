@@ -27,4 +27,11 @@ public interface IContextHandler
     public void Writeln(string s);
 
     public ConsoleKey WaitKey();
+
+    public double ReadDouble(
+        double min = double.NegativeInfinity,
+        double max = double.PositiveInfinity,
+        string label = "enter double value: ",
+        string invalidInput = "you introduced not double value!\n",
+        string overflowInput = "double that you introduced is not in bounds\n");
 }
