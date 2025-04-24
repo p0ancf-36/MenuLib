@@ -34,4 +34,11 @@ public interface IContextHandler
         string label = "enter double value: ",
         string invalidInput = "you introduced not double value!\n",
         string overflowInput = "double that you introduced is not in bounds\n");
+    
+    public int ReadInt(
+        int min = int.MinValue,
+        int max = int.MaxValue,
+        string label = "enter integer value: ",
+        string invalidInput = "you introduced not integer value!\n",
+        string overflowInput = "integer that you introduced is not in bounds\n");
 }

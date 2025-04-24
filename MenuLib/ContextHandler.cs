@@ -89,4 +89,35 @@ public class ContextHandler : IContextHandler
 
         return result;
     }
+
+    public int ReadInt(int min = Int32.MinValue, int max = Int32.MaxValue, string label = "enter integer value: ",
+        string invalidInput = "you introduced not integer value!\n",
+        string overflowInput = "integer that you introduced is not in bounds\n")
+    {
+        int result;
+        bool isSuccess;
+
+        Begin();
+
+        do
+        {
+            Write(label);
+            isSuccess = int.TryParse(Console.ReadLine(), out result);
+
+            Clear();
+            if (!isSuccess)
+            {
+                Write(invalidInput);
+            }
+            else if (result < min || result > max)
+            {
+                isSuccess = false;
+                Write(overflowInput);
+            }
+        } while (!isSuccess);
+
+        End();
+
+        return result;
+    }
 }
